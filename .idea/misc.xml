@@ -23,8 +23,11 @@
         <entry key="..\:/Users/ronan/AndroidStudioProjects/LogInPage_main/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login_page.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_up2.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.225" />
       </map>
     </option>
   </component>

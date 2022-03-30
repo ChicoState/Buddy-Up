@@ -3,8 +3,10 @@ package com.example.loginpage_main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +20,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener {
+public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private TextView signbtn;
+    private TextView nextbtn;
     private EditText editTextfirstname, editTextlastname, editTextusername, editTextpassword, editTextphonenumber, editTextemail, editTextgym;
 
     @Override
@@ -41,20 +43,23 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         editTextphonenumber = (EditText) findViewById(R.id.phonenumber);
         editTextgym = (EditText) findViewById(R.id.gym);
 
-        signbtn = (Button) findViewById(R.id.signup);
-        signbtn.setOnClickListener(this);
+        nextbtn = (Button) findViewById(R.id.next);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.signup:
-                signupbtn();
-                break;
-        }
+    public void callNextSignUpScreen(View view){
+        Intent intent = new Intent(getApplicationContext(),SignUp2.class);
+        //Add Transition
+        Pair[] pairs = new Pair[1];
+         pairs[0] = new Pair<View,String>(nextbtn,"transition_next_btn");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this, pairs);
+        startActivity(intent);
     }
 
-    private void signupbtn() {
+
+
+
+    private void nextbtn() {
         String firstname = editTextfirstname.getText().toString().trim();
         String lastname = editTextlastname.getText().toString().trim();
         String username = editTextusername.getText().toString().trim();
@@ -125,8 +130,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(SignUp.this, "User has been Signed Up", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent (SignUp.this, LoginPage.class));
+                                        Toast.makeText(SignUp.this, "Go to Next Page", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent (SignUp.this, SignUp2.class));
                                     } else {
                                         Toast.makeText(SignUp.this, "Failed to Sign Up", Toast.LENGTH_LONG).show();
                                     }
